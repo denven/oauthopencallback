@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="icon" href="/favicon.ico">
+	<link rel="stylesheet" href="/styles.css" type="text/css" />
+	<title>Open OAuth2 Callback URL</title>
+</head>
+
+<body>
+	<header>
+		<div class="nav">
+			<div class="left">
+				<img class="logo" src="/logo.png" alt="">
+			</div>
+			<div>
+				<a href="https://github.com/denven/covid-19-statistics">
+					<svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32"
+						data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+						<path fill-rule="evenodd"
+							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+						</path>
+					</svg>
+				</a>
+			</div>
+		</div>
+		<div class="title">Open Callback URL for OAuth2</div>
+	</header>
+
+	<!-- Authentication success -->
+	<div id="cb_success" class="auth-success" style="display: none;">
+		<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="none">
+			<circle cx="50" cy="50" r="50" fill="#26B47F" />
+			<path
+				d="M71.875 37.373c0-2.828-2.26-5.123-5.05-5.123-1.58 0-2.988.738-3.915 1.89l-.002-.002-18.197 22.678-7.828-8.603-.004.004a4.996 4.996 0 0 0-3.705-1.651c-2.79-.002-5.049 2.29-5.049 5.121 0 1.341.513 2.557 1.342 3.47l-.003.004 11.778 12.942.004-.004a4.996 4.996 0 0 0 3.705 1.651c1.58 0 2.988-.738 3.915-1.89l.002.002 21.875-27.256-.002-.001a5.14 5.14 0 0 0 1.133-3.232h.001Z"
+				fill="#fff" />
+		</svg>
+		<h1>Your request is authenticated successfully!</h1>
+		<p>Please click the copy button to get your authentication code.</p>
+		<div id="code"></div>
+		<div class="copy">
+			<p id="copy_hint">Code copied</p>
+			<button id="copy">Copy Code</button>
+		</div>
+	</div>
+
+	<!-- Authentication failure -->
+	<div id="cb_failure" class="auth-failure" style="display: none;">
+		<div style="height: 100; width: 100px">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50"
+				xml:space="preserve">
+				<circle style="fill:#d75a4a" cx="25" cy="25" r="25" />
+				<path style="fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10"
+					d="m16 34 9-9 9-9M16 16l9 9 9 9" />
+			</svg>
+		</div>
+		<h1>Your request of the authorization code failed!</h1>
+		<p>Please inspect your query parameters or the original OAuth Authentizaion Code grant API call.</p>
+		<div id="failure_info"></div>
+	</div>
+
+	<!-- user guide information -->
+	<div id="guide" style="display: none;">
+		<h3>This easy-peasy site provides a callback url and a more convinient way to obtain the code for OAuth 2.0
+			<span>Authentizaion Code</span> grant step after redirection.
+		</h3>
+		<p>Reference: <a
+				href=" https://www.oauth.com/oauth2-servers/access-tokens/authorization-code-request/">Authorization
+				Code Request</a>
+		</p>
+		<h1 class="how-to">To receive your authentication code, please put the following url as your application,
+			request Redirect URL
+			(or Callback URL, redirect_uri etc.).</h1>
+		<p id="callback_uri" style="font-weight: 700; font-size: 20px; color:coral"></p>
+	</div>
+
+	<!-- Callback vist satatistcs -->
+	<div id="hit-stat">
+		<p> This callback URL has been used <span>
+				<%= count %><span /> times since <span class="date">
+						<%= since %><span />. </p>
+		<div>
+			<span class="counter">
+				<%= count %>
+			</span>
+		</div>
+	</div>
+</body>
+<div style="all: initial !important;"></div>
+
+<script>
+	const url = new URL(window.location.href);
+	const code = url.searchParams.get('code');
+	if (url.pathname == "/callback") {
+		if (code != undefined) {
+			document.getElementById('cb_success').style.display = "flex";
+			document.getElementById('code').innerHTML = code;
+			navigator.clipboard.writeText(code);  // auto-copy to clipboard
+		}
+		else {
+			document.getElementById('cb_failure').style.display = "flex";
+			document.getElementById('failure_info').innerHTML = url.searchParams;
+		}
+	} else {
+		document.getElementById('guide').style.display = "block";
+		const callbackUrlEle = document.getElementById("callback_uri");
+		callbackUrlEle.innerHTML = url.origin + "/callback"
+		console.log(url.origin + "/callback");
+	}
+
+	document.querySelector("#copy").addEventListener("click", function () {
+		document.getElementById("copy_hint").style.display = "block";
+		setTimeout(() => {
+			document.getElementById("copy_hint").style.display = "none";
+		}, 1000)
+	});
+
+</script>
+
+</html>

@@ -1,0 +1,126 @@
+body {
+	background: #f2f2f2;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+}
+
+header .nav {
+	margin: 20px 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header .nav .left > .logo {
+	height: 32px;
+	width: 32px;
+}
+
+header .title {
+	font-weight: bold;
+	font-size: 40px;
+	text-align: center;
+}
+
+.auth-success,
+.auth-failure,
+#guide,
+#hit-stat {
+	color: #505050;
+	line-height: 24px;
+	text-align: center;
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#hit-stat {
+	position: absolute;
+	margin-top: unset;
+	line-height: unset;
+	left: 50%;
+	bottom: 100px;
+	transform: translate(-50%, -50%);
+}
+
+h1 {
+	font-size: 20px;
+}
+
+.auth-successs>p {
+	font-size: 14px;
+	margin: 0;
+}
+
+.auth-success #code,
+.auth-failure #failure_info {
+	width: 400px;
+	border: 1.5px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.auth-success #code {
+	color: green;
+	font-weight: 600;
+}
+
+.auth-failure #failure_info {
+	color: tomato;
+	font-weight: 600;
+}
+
+.auth-success button {
+	padding: 5px;
+	margin-top: 10px;
+	background-color: tomato;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+	color: white;
+	font-size: 16px;
+	opacity: .7;
+}
+
+.auth-success .copy {
+	position: relative;
+}
+
+.auth-success #copy_hint {
+	display: none;
+	position: absolute;
+	width: 100px;
+	left: 100%;
+	top: -10%;
+}
+
+#guide .how-to {
+	margin-top: 50px;
+}
+
+#guide h3 > span {
+	padding-left: 3px;
+	padding-right: 3px;
+	background-color: yellowgreen; 
+}
+
+#hit-stat .counter {
+	font-size: 64px;
+	font-weight: 800;
+	color: greenyellow;
+	background-color: black;
+	height: 100px;
+	width: auto;
+	border-radius: 15px;
+	padding: 5px 15px;
+
+}
+
+#hit-stat .date {
+	color: blue;
+	text-decoration: underline;
+}
