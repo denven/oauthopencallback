@@ -12,7 +12,7 @@ header .nav {
 	align-items: center;
 }
 
-header .nav .left > .logo {
+header .nav .left .logo {
 	height: 32px;
 	width: 32px;
 }
@@ -98,8 +98,33 @@ h1 {
 	top: -10%;
 }
 
+#guide {	
+	margin-top: 30px;
+}
+
+#guide img {
+	margin: 40px 0;
+}
+
 #guide .how-to {
 	margin-top: 50px;
+}
+
+#guide .url-copy {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+#guide .url-copy-btn {	
+	position: relative;
+	margin: 0 10px;
+}
+#guide .url-copy-btn > span {
+	position: absolute;	
+	float: right;
+	margin-left: 15px;
 }
 
 #guide h3 > span {
@@ -117,7 +142,6 @@ h1 {
 	width: auto;
 	border-radius: 15px;
 	padding: 5px 15px;
-
 }
 
 #hit-stat .date {

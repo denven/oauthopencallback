@@ -11,10 +11,12 @@
 	<header>
 		<div class="nav">
 			<div class="left">
-				<img class="logo" src="/logo.png" alt="">
+				<a href="#" alt="Go to site home">
+					<img class="logo" src="/logo.png" alt="">
+				</a>
 			</div>
 			<div>
-				<a href="https://github.com/denven/covid-19-statistics">
+				<a href="https://github.com/denven/oauthopencallback">
 					<svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32"
 						data-view-component="true" class="octicon octicon-mark-github v-align-middle">
 						<path fill-rule="evenodd"
@@ -40,7 +42,7 @@
 		<div id="code"></div>
 		<div class="copy">
 			<p id="copy_hint">Code copied</p>
-			<button id="copy">Copy Code</button>
+			<button id="copy">Copy your Code</button>
 		</div>
 	</div>
 
@@ -61,24 +63,37 @@
 
 	<!-- user guide information -->
 	<div id="guide" style="display: none;">
-		<h3>This easy-peasy site provides a callback url and a more convinient way to obtain the code for OAuth 2.0
-			<span>Authentizaion Code</span> grant step after redirection.
+		<img src="/logo.png" alt="">
+		<h3>This easy-peasy site provides a callback url (<span>redirect_uri</span>) and a more convinient way to obtain
+			the <span>code</span> for OAuth 2.0 <span>Authentizaion Code grant</span> step after the redirection.
 		</h3>
 		<p>Reference: <a
 				href=" https://www.oauth.com/oauth2-servers/access-tokens/authorization-code-request/">Authorization
-				Code Request</a>
+				Code Request</a> (the <b>redirect_uri</b> and <b>code</b>)
 		</p>
 		<h1 class="how-to">To receive your authentication code, please put the following url as your application,
 			request Redirect URL
 			(or Callback URL, redirect_uri etc.).</h1>
-		<p id="callback_uri" style="font-weight: 700; font-size: 20px; color:coral"></p>
+		<div class="url-copy">
+			<p id="callback_uri" style="font-weight: 700; font-size: 20px; color:coral"></p>
+			<div class="url-copy-btn">
+				<svg aria-hidden="true" class="StyledOcticon-uhnt7w-0 chsbSS" width="16" height="16" fill="currentColor"
+					style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible">
+					<path fill-rule="evenodd"
+						d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25v-7.5z" />
+					<path fill-rule="evenodd"
+						d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25v-7.5zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25h-7.5z" />
+				</svg>
+				<span class="url-copied"></span>
+			</div>
+		</div>
 	</div>
 
 	<!-- Callback vist satatistcs -->
 	<div id="hit-stat">
 		<p> This callback URL has been used <span>
 				<%= count %><span /> times since <span class="date">
-						<%= since %><span />. </p>
+						<%= since %><span /></p>
 		<div>
 			<span class="counter">
 				<%= count %>
@@ -91,6 +106,8 @@
 <script>
 	const url = new URL(window.location.href);
 	const code = url.searchParams.get('code');
+	document.querySelector(".left > a").href = url.origin;
+
 	if (url.pathname == "/callback") {
 		if (code != undefined) {
 			document.getElementById('cb_success').style.display = "flex";
@@ -105,7 +122,6 @@
 		document.getElementById('guide').style.display = "block";
 		const callbackUrlEle = document.getElementById("callback_uri");
 		callbackUrlEle.innerHTML = url.origin + "/callback"
-		console.log(url.origin + "/callback");
 	}
 
 	document.querySelector("#copy").addEventListener("click", function () {
@@ -115,6 +131,13 @@
 		}, 1000)
 	});
 
+	document.querySelector(".url-copy").addEventListener("click", function () {
+		navigator.clipboard.writeText(url.origin + "/callback");
+		document.getElementsByClassName("url-copied")[0].innerHTML = "Copied"
+		setTimeout(() => {
+			document.getElementsByClassName("url-copied")[0].innerHTML = "";
+		}, 1000)
+	});	
 </script>
 
 </html>

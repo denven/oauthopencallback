@@ -1,0 +1,27 @@
+{
+  "name": "oauth2callback",
+  "version": "1.0.0",
+  "description": "> Open Auth2 Callback is a simple website, exculsively providing:\r > - the callback (aka. redirect uri) URL for API using OAuth2 Authorization Code Grant flow;\r > - as well as a easy way to get the granted code to clipboard by a simple click.",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "serve-favicon": "^2.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denven/oauthopencallback.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denven/oauthopencallback/issues"
+  },
+  "homepage": "https://github.com/denven/oauthopencallback#readme"
+}

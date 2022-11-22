@@ -1,7 +1,8 @@
+const port = 8000; // listening port setting
+
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const port = 8000;
 
 const app = express();
 app.set("view engine", "ejs");
@@ -40,4 +41,7 @@ app.get("/", (req, res) => {
 	res.render("index", gVisitStat);
 });
 
-app.listen(port, () => console.log(`Callback app listening at http://localhost:${port}`));
+app.listen(port, () => {
+	console.log(`Callback app started to listen at http://localhost:${port}`);
+	console.log(`Your callback URL is http://localhost:${port}/callback`);
+});
