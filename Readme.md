@@ -10,7 +10,7 @@
 ### How to use
 
 1. Use the callback URL from a deployed site:
-- [https://openoauth2callback.eastus.cloudapp.azure.com/callback](https://openoauth2callback.eastus.cloudapp.azure.com/callback)
+- [http://openoauth2callback.eastus.cloudapp.azure.com/callback](http://openoauth2callback.eastus.cloudapp.azure.com/callback)
 
 
 
