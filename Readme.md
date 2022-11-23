@@ -10,15 +10,17 @@
 ### How to use
 
 1. Use the callback URL from a deployed site:
-- [http://openoauth2callback.eastus.cloudapp.azure.com/callback](http://openoauth2callback.eastus.cloudapp.azure.com/callback)
-
+- [https://openoauth2callback.eastus.cloudapp.azure.com/callback](https://openoauth2callback.eastus.cloudapp.azure.com/callback).
+        - API vendors ususally require a https URL as the redirec URL or callback URL
+        - This site uses a free self-signed certificate, it is okay to use for applicatoin dev and test
+        - DO NOT use it for application production
 
 
 2. Clone the repo and run it on your local machine:
 - install and run the web application
-  
-	```bash
-	npm install -D express ejs serve-favicon
-	node server.js
-	```
-- copy the callback url to your target application.
+
+        ```bash
+        npm install -D express ejs serve-favicon
+        node server.js
+        ```
+- copy the localhost callback url to your target application. e.g.: `http://localhost:8080/callback`
