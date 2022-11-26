@@ -106,13 +106,15 @@
 <script>
 	const url = new URL(window.location.href);
 	const code = url.searchParams.get('code');
+	console.log(code)
 	document.querySelector(".left > a").href = url.origin;
 
 	if (url.pathname == "/callback") {
-		if (code != undefined) {
+		console.log('code', code)
+		if (code != undefined && typeof (code) == "string" && code.length > 0) {
 			document.getElementById('cb_success').style.display = "flex";
 			document.getElementById('code').innerHTML = code;
-			navigator.clipboard.writeText(code);  // auto-copy to clipboard
+			// navigator.clipboard.writeText(code);  // auto-copy to clipboard
 		}
 		else {
 			document.getElementById('cb_failure').style.display = "flex";
@@ -125,10 +127,13 @@
 	}
 
 	document.querySelector("#copy").addEventListener("click", function () {
-		document.getElementById("copy_hint").style.display = "block";
-		setTimeout(() => {
-			document.getElementById("copy_hint").style.display = "none";
-		}, 1000)
+		if (code != undefined) {
+			navigator.clipboard.writeText(code);
+			document.getElementById("copy_hint").style.display = "block";
+			setTimeout(() => {
+				document.getElementById("copy_hint").style.display = "none";
+			}, 1000)
+		}
 	});
 
 	document.querySelector(".url-copy").addEventListener("click", function () {

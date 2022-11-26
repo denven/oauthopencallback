@@ -15,10 +15,7 @@ app.use(express.static(path.join(__dirname, "./public")));
 const favicon = require("serve-favicon");
 app.use(favicon(path.join(__dirname, "./public", "favicon.ico")));
 
-// global statistics data variables
-let gVisitStat = 0;
-let gEpocHours = parseInt(Date.now() / 3600);
-
+let gVisitStat = {}; // global statistics data variables
 const writeVisitStat = () => {
 	gVisitStat.lastUpadted = Date.now();
 	fs.writeFile("./stat.json", JSON.stringify(gVisitStat, null, 4), () => {});
@@ -34,9 +31,7 @@ try {
 // routes
 app.get("/callback", (req, res) => {
 	gVisitStat.count++;
-	const curHours = parseInt(Date.now() / 3600);
-	if (curHours > gEpocHours) {
-		gEpocHours = curHours;
+	if (gVisitStat.count % 10 == 0) {
 		writeVisitStat();
 	}
 	res.render("index", gVisitStat);
