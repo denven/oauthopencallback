@@ -71,6 +71,9 @@ h1 {
 .auth-success #code {
 	color: green;
 	font-weight: 600;
+	word-wrap: break-word;
+	overflow: hidden;
+	text-overflow: ellipsis;	
 }
 
 .auth-failure #failure_info {
