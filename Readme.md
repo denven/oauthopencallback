@@ -9,20 +9,25 @@ Open Auth2 Callback is a simple website, exculsively providing:
 
 ### Tested OAuth2 API vendors
 - Microsoft Graph API
+- Google Cloud API
 
 
 
-### How to use
+### How to use the code
 
-1. Use the callback URL from a deployed site, copy it to your target application settings: 
-  - [https://openoauth2callback.eastus.cloudapp.azure.com/callback](https://openoauth2callback.eastus.cloudapp.azure.com/callback)
+
+Way 1. Clone the repo and run it on your local machine
+  - install and run the web application
+    - `npm install -D express ejs serve-favicon`      
+    - `node server.js`
+  - copy the localhost callback url to your target application as the callback or redirect URI/URL. e.g.: 
+    - `http://localhost:8080/callback`
+    - `http://127.0.0.1:8080/callback`
+
+
+Way 2. Use the callback URL from a deployed site, copy it to your target application settings: 
+  - [https://openoauth2callback.eastus.cloudapp.azure.com/callback](https://openoauth2callback.eastus.cloudapp.azure.com/callback) ⚠️ **link is expired**
     - API vendors ususally require a https URL as the redirec URL or callback URL
     - This site uses a free self-signed certificate, it is okay to use for applicatoin dev and test
     - **DO NOT** use it for production application
   - or use the code to deploy one site by your own
-
-2. Clone the repo and run it on your local machine
-  - install and run the web application
-    - `npm install -D express ejs serve-favicon`      
-    - `node server.js`
-- copy the localhost callback url to your target application. e.g.: `http://localhost:8080/callback`
