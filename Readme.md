@@ -26,8 +26,9 @@ Way 1. Clone the repo and run it on your local machine
 
 
 Way 2. Use the callback URL from a deployed site, copy it to your target application settings: 
-  - [https://openoauth2callback.eastus.cloudapp.azure.com/callback](https://openoauth2callback.eastus.cloudapp.azure.com/callback) ⚠️ **link is expired**
+  - [https://opencallback.eastus.cloudapp.azure.com/callback](https://openocallback.eastus.cloudapp.azure.com/callback)
     - API vendors ususally require a https URL as the redirec URL or callback URL
-    - This site uses a free self-signed certificate, it is okay to use for applicatoin dev and test
+    - This site uses a free **self-signed certificate**, it is okay to accept the link and go forward for applicatoin dev and test
+    - ![image](https://github.com/denven/oauthopencallback/assets/16745984/d2dfeb66-2b61-4232-9880-8f0464a6c052)
     - **DO NOT** use it for production application
   - or use the code to deploy one site by your own
